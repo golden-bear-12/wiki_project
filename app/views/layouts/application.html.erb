@@ -10,6 +10,18 @@
 
   <div class="container">
     <ul class="nav nav-tabs">
+      <div class="pull-left">
+        <% if user_signed_in? %>
+          <%= link_to "User Wikis", current_user %> |
+          <%= link_to "All Wikis", wikis_path %>
+        <% end %>
+      </div>
+    </ul>
+  </div>
+
+
+  <div class="container">
+    <ul class="nav nav-tabs">
       <div class="pull-right">
         <% if user_signed_in? %>
           Signed in as: <strong><%= current_user.email %></strong> |
@@ -20,6 +32,24 @@
         <% end %>
       </div>
     </ul>
+
+  <div class="flash">
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data_dismiss="alert">&times;</button>
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-danger">
+        <button type="button" class="close" data_dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+      </div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-warning">
+        <button type="button" class="close" data_dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
   </div>
 
 <%= yield %>
